@@ -1,0 +1,13 @@
+load("@rules_scala//scala:scala.bzl", "scala_binary")
+
+scala_binary(
+    name = "crontab-ls",
+    srcs = glob(["*.scala"]),
+    main_class = "main",
+    deps = [
+        "//cron",
+        "@maven//:com_google_code_gson_gson",
+        "@maven//:org_eclipse_lsp4j_org_eclipse_lsp4j",
+        "@maven//:org_eclipse_lsp4j_org_eclipse_lsp4j_jsonrpc",
+    ],
+)

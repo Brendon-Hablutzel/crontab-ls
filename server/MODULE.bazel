@@ -1,0 +1,38 @@
+"""crontab language server"""
+
+module(
+    name = "crontab-ls",
+    version = "0.1.0",
+)
+
+#bazel_dep(name = "rules_java", version = "7.7.0")
+bazel_dep(name = "rules_scala", version = "7.0.0")
+bazel_dep(name = "rules_jvm_external", version = "6.7")
+
+scala_config = use_extension(
+    "@rules_scala//scala/extensions:config.bzl",
+    "scala_config",
+)
+scala_config.settings(
+    scala_version = "3.6.4",
+)
+
+scala_deps = use_extension(
+    "@rules_scala//scala/extensions:deps.bzl",
+    "scala_deps",
+)
+scala_deps.scala()
+
+maven = use_extension("@rules_jvm_external//:extensions.bzl", "maven")
+maven.install(
+    name = "maven",
+    artifacts = [
+        "org.eclipse.lsp4j:org.eclipse.lsp4j:0.24.0",
+        "org.eclipse.lsp4j:org.eclipse.lsp4j.jsonrpc:0.24.0",
+        "com.google.code.gson:gson:2.10.1",
+    ],
+    repositories = [
+        "https://repo1.maven.org/maven2",
+    ],
+)
+use_repo(maven, "maven")

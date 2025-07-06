@@ -1,0 +1,7 @@
+directories:
+  .
+
+targets:
+  //:crontab-ls
+  //cron:cron
+
