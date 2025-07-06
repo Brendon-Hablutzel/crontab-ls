@@ -6,4 +6,6 @@ To run the Language Server, use `bazel run //:crontab-ls` from the `server/` dir
 
 To run the Language Server-wrapping extension, first open the `client/` directory in VSCode. Go to the run and debug menu, select the "Launch Client" run option, then click run. This will open a new VSCode window that has access to the Crontab Language Server.
 
+## Distribution
 
+To package the VSCode extension, run `npm run package` from the `client/` directory--this will create a `.vsix` file that can be used to install the extension.
